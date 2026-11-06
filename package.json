@@ -1,0 +1,19 @@
+{
+  "name": "dc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Run the Pi coding agent in a Docker sandbox, from the shell or as a T3 Code provider.",
+  "bin": {
+    "dc": "dc",
+    "dc-pi": "dc-pi"
+  },
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "image": {
+    "name": "dc-sandbox",
+    "base": "node:22-bookworm",
+    "pi": "1.4.0",
+    "packages": ["git", "curl", "ripgrep", "fd-find"],
+    "run": [
+      "npm install -g pnpm",
+      "curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o /usr/share/keyrings/githubcli-archive-keyring.gpg && echo \"deb [signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\" > /etc/apt/sources.list.d/github-cli.list && apt-get update && apt-get install -y gh && rm -rf /var/lib/apt/lists/*"
+    ]
+  },
+  "hosts": {
+    "github": ["github.com", "api.github.com", "codeload.github.com", "objects.githubusercontent.com", "raw.githubusercontent.com"]
+  },
+  "defaultProfile": "offline",
+  "endpoints": {
+    "openrouter": {
+      "name": "OpenRouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "apiKey": { "env": "OPENROUTER_API_KEY" },
+      "models": [
+        { "id": "moonshotai/kimi-k2", "name": "Kimi K2", "contextWindow": 131072, "maxTokens": 16384 }
+      ]
+    }
+  },
+  "profiles": {
+    "offline": { "label": "Offline" },
+    "github": {
+      "label": "GitHub",
+      "allow": ["@github"],
+      "env": { "GH_TOKEN": { "command": "gh auth token" } },
+      "git": {
+        "credential.https://github.com.helper": "!gh auth git-credential",
+        "url.https://github.com/.insteadOf": ["git@github.com:", "ssh://git@github.com/"]
+      }
+    }
+  }
+}

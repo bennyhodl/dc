@@ -1,0 +1,9 @@
+#!/usr/bin/env bun
+import { main } from "./src/cli.ts";
+
+try {
+  process.exit(await main(process.argv.slice(2)));
+} catch (error) {
+  process.stderr.write(`dc: ${error.message}\n`);
+  process.exit(1);
+}
