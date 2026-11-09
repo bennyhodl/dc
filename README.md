@@ -10,6 +10,8 @@ up in T3's model picker, so choosing a model also chooses the sandbox.
 
 ## Install
 
+Setting up with T3 Code: [INSTALL.md](INSTALL.md).
+
 ```sh
 bun install
 bun link                                         # puts dc and dc-pi in ~/.bun/bin
